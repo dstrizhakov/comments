@@ -1,0 +1,196 @@
+@import "_null"; 
+
+body {
+background-color: aliceblue;
+font-size: 16px;
+}
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+[class*="__container"] {
+	margin: 0 auto;
+	max-width: 600px;
+	padding: 0 15px;
+}
+
+h1 {
+	text-align: center;
+	margin: 10px 0;
+	font-size: 28px;
+	font-weight: 700;
+}
+
+form {
+	width: 100%;
+}
+input {
+  padding: 12px 16px;
+	border: 1px solid teal;
+	outline-color: teal;
+  border-radius: 8px;
+	height: 40px;
+	// margin: 10px 0;
+}
+
+button {
+	height: 40px;
+  color: #fff;
+  background-color: teal;
+	padding: 12px 18px;
+	font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  transition: all 0.25s ease 0s;
+}
+
+button:hover {
+	background-color: rgba(0, 128, 128, 0.794);
+}
+
+textarea {
+	padding: 12px 16px;
+	border: 1px solid teal;
+	outline-color: teal;
+  border-radius: 8px;
+	height: 80px;
+	display: block;
+	width: 100%;
+	resize: vertical;
+	margin-bottom: 10px;
+}
+
+
+.form {
+
+	& span {
+		color: red;
+		font-size: 11px;
+	 }
+
+	&__row {
+		display: flex;
+		margin-bottom: 15px;
+		
+	}
+
+	&__name {
+	flex: 1 1 auto;
+	margin-right: 10px;
+	position: relative;
+	 & input {
+		width: 100%;
+	 }
+	 & span {
+		display: none;
+		position: absolute;
+		bottom: -13px;
+		left: 10px;
+	 }
+	 
+	}
+
+	&__date {
+		position: relative;
+		& input {
+			width: 100%;
+		 }
+		 & span {
+			display: none;
+			position: absolute;
+			bottom: -13px;
+			left: 10px;
+		 }
+	}
+
+	&__text {
+		margin-bottom: 15px;
+		position: relative;
+		& textarea {
+			width: 100%;
+		 }
+		 & span {
+			display: none;
+			position: absolute;
+			// color: red;
+			// font-size: 11px;
+			bottom: -13px;
+			left: 10px;
+		 }
+	}
+}
+
+
+.comments {
+
+	&__body {
+		margin-top: 20px;
+	}
+}
+.comment {
+
+	&__body {
+		margin-bottom: 10px;
+	}
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		padding: 6px 10px;
+		min-height: 30px;
+		border-bottom: 1px dotted teal;
+	}
+
+	&__name {
+		font-weight: 700;
+	}
+
+	&__date {
+		font-size: 14px;
+		color: grey;
+	}
+
+	&__text {
+		padding: 10px;
+		background-color: #fff;
+		line-height: 120%;
+	}
+
+	&__actions {
+		padding: 6px 10px;
+		min-height: 30px;
+		border-radius: 0px 0px 8px 8px ;
+		border-top: 1px dotted teal;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__delete {
+				cursor: pointer;
+				width: 16px;
+				height: 16px;
+	}
+
+
+	&__like {
+		margin-right: 10px;
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+	}
+}
+
+.liked {
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(-40deg) brightness(118%) contrast(119%);
+}
+.error input, .error textarea {
+  border: 1px solid rgb(249, 94, 94);
+	outline-color: rgb(249, 94, 94);
+}
+.error span {
+  display: inline;
+}
+

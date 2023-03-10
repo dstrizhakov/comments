@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Comments</title>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="comments">
+			<div class="comments__container">
+				<h1>Комментарии</h1>
+				<form action="submit" name="form" class="form">
+					<div class="form__row">
+						<div class="form__name">
+							<input value = 'Валера' type="text" name="name" tabindex="1" placeholder="Ваше имя" >
+							<span>Ошибка, имя должно быть более 3 символов!</span>
+						</div>
+						<div class="form__date">
+							<input type="date" name="date" tabindex="2" >
+							<span>Ошибка!</span>
+						</div>
+					</div>
+					<div class="form__text">
+						<textarea name="comment" tabindex="3" placeholder="Текст комментария" id="comment"></textarea>
+						<span>Ошибка, это поле не может быть пустым!</span>
+					</div>
+						
+					<button tabindex="4">Отправить</button>
+				</form>
+				<div class="comments__body">
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/script.js"></script>
+</body>
+</html>
