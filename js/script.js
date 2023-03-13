@@ -10,7 +10,7 @@ form.addEventListener("submit", function (event) {
   let date = form.date.value;
   let text = form.comment.value;
 
-  // валидация и обработка ошибо
+  // валидация формы
   if (name.length < 3) {
     nameContainerEl.classList.add("error");
     return;
@@ -20,24 +20,10 @@ form.addEventListener("submit", function (event) {
     return;
   }
 
-  // Обработка даты
-  if (!date) {
-    date = new Date();
-  } else {
-    date = new Date(date);
-  }
-  let day = getMessageDateTime(date); // Сегодня, Вчера, 20.11.2012
-
-  let time = new Date().toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  let dateTime = `${day}, ${time}`; // склеиваем День + Время
+  let dateTime = getCommentDateTime(date);
 
   //Создаем новый комментарий и добавляем его в HTML
-  let newComment = createComment(name, dateTime, text);
-  commentsBody.append(newComment);
+  commentsBody.append(createComment(name, dateTime, text));
 
   // очищаем форму
   form.name.value = "";
@@ -45,17 +31,13 @@ form.addEventListener("submit", function (event) {
   form.comment.value = "";
 });
 
-form.name.addEventListener("input", function (e) {
+form.name.addEventListener("input", function () {
   nameContainerEl.classList.remove("error");
 });
 
-form.comment.addEventListener("input", function (e) {
+form.comment.addEventListener("input", function () {
   textContainerEl.classList.remove("error");
 });
-
-function validateLength(string, length) {
-  return string.trim().length < length;
-}
 
 function createComment(name, date, text) {
   const comment = document.createElement("div");
@@ -104,21 +86,21 @@ function dropHMS(date) {
   date.setSeconds(0, 0);
 }
 
-function getMessageDateTime(dateTime) {
+function getCommentDate(dateTime) {
   let today = new Date(), // присвоение и форматированние текущей даты
     yesterday = new Date(), // присвоение и форматирование текущей даты - 1 день
-    roomLastMessageDate = new Date(dateTime); // присвоение и форматирование даты последнего сообщения комнаты
+    commentDate = new Date(dateTime); // присвоение и форматирование даты комментария
 
   yesterday.setDate(today.getDate() - 1);
 
   dropHMS(today);
   dropHMS(yesterday);
-  dropHMS(roomLastMessageDate);
+  dropHMS(commentDate);
 
   if (dateTime) {
-    if (today.getTime() === roomLastMessageDate.getTime()) {
+    if (today.getTime() === commentDate.getTime()) {
       return "Сегодня";
-    } else if (yesterday.getTime() === roomLastMessageDate.getTime()) {
+    } else if (yesterday.getTime() === commentDate.getTime()) {
       return "Вчера";
     } else {
       const options = {
@@ -126,7 +108,24 @@ function getMessageDateTime(dateTime) {
         month: "numeric",
         day: "numeric",
       };
-      return roomLastMessageDate.toLocaleString("ru-RU", options);
+      return commentDate.toLocaleString("ru-RU", options);
     }
   }
+}
+
+function getCommentDateTime(date) {
+  if (!date) {
+    date = new Date();
+  } else {
+    date = new Date(date);
+  }
+  let day = getCommentDate(date); // Сегодня, Вчера, 20.11.2012
+
+  // так как время не привязано к дате по ТЗ бемем текущее время
+  let time = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return `${day}, ${time}`;
 }
