@@ -70,6 +70,7 @@ function createComment(name, date, text) {
   commentDelete.alt = "delete";
   commentActions.append(commentLike, commentDelete);
 
+  // слушатели событий для кнопок лайк и удаление комментария
   commentLike.addEventListener("click", function () {
     commentLike.classList.toggle("liked");
   });
@@ -121,7 +122,7 @@ function getCommentDateTime(date) {
   }
   let day = getCommentDate(date); // Сегодня, Вчера, 20.11.2012
 
-  // так как время не привязано к дате по ТЗ бемем текущее время
+  // так как время не привязано к дате по ТЗ берем текущее время
   let time = new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
